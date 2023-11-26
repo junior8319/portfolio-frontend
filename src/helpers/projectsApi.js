@@ -54,7 +54,6 @@ const registerProjectRequest = async (receivedData) => {
 
 const uploadSnapshot = async (snapshot) => {
   try {
-    console.log(snapshot);
     const options = {
       method: 'POST',
       body: snapshot,
