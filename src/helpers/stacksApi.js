@@ -1,5 +1,6 @@
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
+const TOKEN = localStorage.getItem('token');
 
 const getStacks = async () => {
   try {
@@ -33,6 +34,7 @@ const requestStackRegister = (receivedData) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
     const response = fetch(`${API_URL}/stacks`, options)
@@ -62,6 +64,7 @@ const updateStackRequest = async (receivedId, updatedStack) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
 
@@ -88,6 +91,7 @@ const deleteStackRequest = async (receivedId) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
 
