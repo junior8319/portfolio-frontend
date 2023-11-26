@@ -2,16 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './styled/GlobalStyle';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ContactMe from './pages/ContactMe';
+import Projects from './pages/Projects';
+import Articles from './pages/Articles';
+import Administrator from './pages/Administrator';
+import StacksProvider from './context/StacksProvider';
+import LoginProvider from './context/LoginProvider';
+import NavBar from './components/NavBar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+  <BrowserRouter>
+    <GlobalStyle />
+    <NavBar />
+    <Routes>
+      <Route path="/" element={ <App /> }/>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      <Route path="/contact-me" element={ <ContactMe /> } />
+
+      <Route path="/projects" element={ <Projects /> } />
+
+      <Route path="/articles" element={ <Articles /> } />
+
+      <Route path="/administrator" element={
+        <LoginProvider>
+          <StacksProvider>
+            <Administrator />
+          </StacksProvider>
+        </LoginProvider>}
+      />
+
+      <Route path="*" element={ <div>404</div> } />
+    </Routes>
+  </BrowserRouter>
+);
