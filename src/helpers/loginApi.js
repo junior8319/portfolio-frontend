@@ -17,7 +17,10 @@ const requestLogin = async (receivedCredencials) => {
 
     const response = fetch(`${API_URL}/users/login`, options)
     .then(response => response.json())
-    .then(data => data);
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 
     return response;
   } catch (error) {
