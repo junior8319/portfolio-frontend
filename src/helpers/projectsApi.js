@@ -2,6 +2,7 @@ import { deleteStackProjectRequest, getStackProjectByPKRequest, registerStackPro
 
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
+const TOKEN = localStorage.getItem('token');
 
 const getProjects = async () => {
   try {
@@ -37,6 +38,7 @@ const registerProjectRequest = async (receivedData) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
 
@@ -52,6 +54,7 @@ const registerProjectRequest = async (receivedData) => {
 
 const uploadSnapshot = async (snapshot) => {
   try {
+    console.log(snapshot);
     const options = {
       method: 'POST',
       body: snapshot,
@@ -209,6 +212,7 @@ const requestProjectUpdate = async (receivedId, updatedProject) => {
         'Access-control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
 
@@ -283,6 +287,7 @@ const requestProjectDelete = async (receivedId) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': TOKEN,
       },
     };
 
