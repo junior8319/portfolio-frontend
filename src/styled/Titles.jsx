@@ -21,11 +21,11 @@ export const Title2 = styled.h2`
   padding: 5px 0;
 
   @media (max-width: 1100px) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   @media (max-width: 400px) {
-    font-size: 0.80rem;
+    font-size: 0.9rem;
     width: 100%;
   }
 `;
