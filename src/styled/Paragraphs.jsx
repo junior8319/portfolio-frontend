@@ -13,7 +13,7 @@ export const SimpleP = styled.p`
   }
 
   @media (max-width: 400px) {
-    font-size: ${props => props.$size || "0.65rem"};
+    font-size: ${props => props.$size || "0.75rem"};
     margin: auto;
     width: 95%;    
   }

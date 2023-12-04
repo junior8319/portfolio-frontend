@@ -18,7 +18,7 @@ const ProjectsComponent = () => {
 
   useEffect(() => {}, [projects]);
 
-  const API_BASE = process.env.REACT_APP_BASE_URL;
+  const IMAGES_URL = process.env.REACT_APP_BASE_IMAGES_URL;
 
   return (
     (projects && projects.length)
@@ -43,7 +43,7 @@ const ProjectsComponent = () => {
           $textAlign={ 'center' }
         >
           <ProjectPicture
-            src={ `${API_BASE}/images/${project.snapshot}` }
+            src={ `${IMAGES_URL}/${project.snapshot}` }
           />
         </Article>
 

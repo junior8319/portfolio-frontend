@@ -16,22 +16,22 @@ export const ControlButton = styled.button`
   }
 
   @media (max-width: 1100px) {
-    font-size: 0.7rem;
-    padding: 5px;
+    font-size: 0.9rem;
+    padding: 7.5px;
   }
 `;
 
 export const SaveButton = styled.input`
   border: none;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   padding: 10px;
   border-radius: 10px;
   width: fit-content;
   background-color: #13890f;
   color: #e1dbdb;
   text-align: center;
-  margin: ${props => props.$margin || '3px'};
+  margin: ${props => props.$margin || '10px 3px'};
   
   &:hover {
     background-color: #e1dbdb;
@@ -39,11 +39,11 @@ export const SaveButton = styled.input`
   }
 
   @media (max-width: 1100px) {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 
   @media (max-width: 400px) {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -80,6 +80,7 @@ export const NavMenuButton = styled.button`
   margin: 5px;
   position: ${props => props.$position || ''};
   z-index: ${props => props.$zIndex || ''};
+  font-size: 1.1rem;
   background-color: #47425f90;
   text-align: center;
 

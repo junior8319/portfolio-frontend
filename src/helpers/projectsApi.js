@@ -57,6 +57,7 @@ const uploadSnapshot = async (snapshot) => {
     const options = {
       method: 'POST',
       body: snapshot,
+      accept: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/svg+xml'],
     };
 
     const response = await fetch(`${API_URL}/upload`, options);
