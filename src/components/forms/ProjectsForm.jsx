@@ -273,53 +273,55 @@ const ProjectsForm = () => {
           />
         </FormDiv100>
 
-        { !isUpdating
-          ?
-          (
-            <SaveButton
-              type='button'
-              value='Salvar'
-              onClick={ (event) => {
-                event.preventDefault();
-                if (!isAdministrator) {
-                  setProject(initialProject);
-                  return alert(
-                  'Você não tem permissão para cadastrar projetos!'
-                  );
-                }
-                sendRegisterRequest();
-              }}
-            />
-          )
-          :
-          (
-            <SaveButton
-              type='button'
-              value='Alterar'
-              onClick={ (event) => {
-                event.preventDefault();
-                if (!isAdministrator) {
-                  stopUpdating();
-                  return alert(
-                    'Você não tem permissão para alterar projetos!'
-                  );
-                }
-                sendUpdateRequest();
-              }}
-            />
-          )
-        }
+        <FormDiv100>
+          { !isUpdating
+            ?
+            (
+              <SaveButton
+                type='button'
+                value='Salvar'
+                onClick={ (event) => {
+                  event.preventDefault();
+                  if (!isAdministrator) {
+                    setProject(initialProject);
+                    return alert(
+                    'Você não tem permissão para cadastrar projetos!'
+                    );
+                  }
+                  sendRegisterRequest();
+                }}
+              />
+            )
+            :
+            (
+              <SaveButton
+                type='button'
+                value='Alterar'
+                onClick={ (event) => {
+                  event.preventDefault();
+                  if (!isAdministrator) {
+                    stopUpdating();
+                    return alert(
+                      'Você não tem permissão para alterar projetos!'
+                    );
+                  }
+                  sendUpdateRequest();
+                }}
+              />
+            )
+          }
 
-        {
-          isUpdating
-          && (
-            <CancelButton
-              type='button'
-              value='Cancelar'
-              onClick={ stopUpdating }
-            />
-          )
-        }
+          {
+            isUpdating
+            && (
+              <CancelButton
+                type='button'
+                value='Cancelar'
+                onClick={ stopUpdating }
+              />
+            )
+          }
+        </FormDiv100>
       </FormContainer>
     </>
   );
