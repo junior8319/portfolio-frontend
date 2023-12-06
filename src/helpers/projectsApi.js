@@ -1,4 +1,8 @@
-import { deleteStackProjectRequest, getStackProjectByPKRequest, registerStackProjectRequest } from "./stacksProjectsApi";
+import {
+  deleteStackProjectRequest,
+  getStackProjectByPKRequest,
+  registerStackProjectRequest
+} from "./stacksProjectsApi";
 
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
