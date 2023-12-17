@@ -1,6 +1,6 @@
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
-const TOKEN = localStorage.getItem('token');
+const TOKEN = JSON.parse(localStorage.getItem('token'));
 
 const getStacks = async () => {
   try {
@@ -61,10 +61,10 @@ const updateStackRequest = async (receivedId, updatedStack) => {
       body: JSON.stringify(updatedStack),
       mode: 'cors',
       headers: {
+        'Authorization': TOKEN,
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
       },
     };
 
