@@ -16,7 +16,7 @@ const StacksForm = () => {
     setStack,
   } = useContext(StacksContext);
 
-  const { isAdministrator } = useContext(LoginContext);
+  const { isAdministrator, token } = useContext(LoginContext);
   
   const initialStack = ({
     title: '',
@@ -37,7 +37,7 @@ const StacksForm = () => {
   };
 
   const sendUpdateRequest = async (receivedId) => {
-    updateStackRequest(receivedId, stack)
+    updateStackRequest(receivedId, stack, token)
     .then(() => {
       getStacks()
       .then(response => setStacks(response));
@@ -132,7 +132,7 @@ const StacksForm = () => {
                       alert('Você não tem permissão para cadastrar uma nova habilidade ou ferramenta.');
                       return;
                     };
-                    requestStackRegister(stack)
+                    requestStackRegister(stack, token)
                       .then((data) => {
                         setStacks([...stacks, data])
                         setStack(initialStack);

@@ -18,7 +18,7 @@ import { Title3 } from '../../styled/Titles';
 
 const StacksTable = () => {
   const { mappedStacks, setIsUpdating, setStack, setStacks } = useContext(StacksContext);
-  const { isAdministrator } = useContext(LoginContext);
+  const { isAdministrator, token } = useContext(LoginContext);
 
   const selectToUpdate = (tableStack) => {
     setIsUpdating(true);
@@ -108,7 +108,7 @@ const StacksTable = () => {
                                 'Você não tem permissão para excluir ferramentas'
                               );
                             }
-                            deleteStackRequest(tableStack.id)
+                            deleteStackRequest(tableStack.id, token)
                             .then(() => {
                               getStacks().then(response => setStacks(response));
                             })

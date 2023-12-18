@@ -14,7 +14,7 @@ const ProjectsTable = () => {
     setProjects,
   } = useContext(ProjectsContext);
 
-  const { isAdministrator } = useContext(LoginContext);
+  const { isAdministrator, token } = useContext(LoginContext);
 
   const selectToUpdate = (tableProject) => {
     setIsUpdating(true);
@@ -94,7 +94,7 @@ const ProjectsTable = () => {
                           `Deseja deletar o projeto ${title}?`
                         );
 
-                        (confirmDelete) && requestProjectDelete(tableProject.id)
+                        (confirmDelete) && requestProjectDelete(tableProject.id, token)
                           .then(() => {
                             getProjects().then((response) => setProjects(response));
                           })
