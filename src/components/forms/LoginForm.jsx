@@ -143,7 +143,7 @@ const LoginForm = () => {
 
           <SaveButton
             type="button"
-            value='Entrar como Visitante'
+            value='Visitar sem cadastro.'
             onClick={ visitorLogin }
           />
         </FormDiv100>
