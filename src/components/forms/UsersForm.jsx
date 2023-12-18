@@ -14,7 +14,8 @@ const UsersForm = () => {
     setIsUpdating,
     setUsers,
     isAdministrator,
-    blankForm
+    blankForm,
+    token,
   } = useContext(LoginContext);
 
   const handleChange  = (event) => {
@@ -28,7 +29,6 @@ const UsersForm = () => {
   };
 
   const sendRegisterRequest = async () => {
-    const token = localStorage.getItem('token');
     await requestCreateUser(registeringUser, token);
 
     stopUpdating();
@@ -38,7 +38,6 @@ const UsersForm = () => {
   };
 
   const sendUpdateRequest = async (receivedId) => {
-    const token = localStorage.getItem('token');
     const response = await requestUpdateUser(receivedId, registeringUser, token);
     
     requestGetUsers()
@@ -98,53 +97,49 @@ const UsersForm = () => {
           </Select>
         </FormDiv100>
 
-        { !isUpdating
-          ?
-          (
-            <SaveButton
-              type="button"
-              value='Salvar'
-              onClick={ () => {
-                if (!isAdministrator) {
-                  alert(
-                    'Você não tem permissão para cadastrar usuários(as).'
-                  );
-                  return;
-                }
-                sendRegisterRequest();
-              }}
-            />
-          )
-          :
-          (
-            <SaveButton
-              type="button"
-              value="Alterar"
-              onClick={ (event) => {
-                event.preventDefault();
-                if (!isAdministrator) {
-                  alert(
-                    'Você não tem permissão para alterar um(a) usuário(a).'
+          { !isUpdating
+            ?
+            (
+              <SaveButton
+                type="button"
+                value='Salvar'
+                onClick={ () => {
+                  if (!isAdministrator) {
+                    alert(
+                      'Você não tem permissão para cadastrar usuários(as).'
                     );
-                  stopUpdating();
-                  return;
-                }
-                sendUpdateRequest(registeringUser.id);
-              }}
-            />
-          )
-        }
-
-        {
-          isUpdating
-          && (
-            <CancelButton
-              type="button"
-              value="Cancelar"
-              onClick={ stopUpdating }
-            />
-          )
-        }
+                    return;
+                  }
+                  sendRegisterRequest();
+                }}
+                />
+            )
+            :
+            (
+              <FormDiv100>
+                <SaveButton
+                  type="button"
+                  value="Alterar"
+                  onClick={ (event) => {
+                    event.preventDefault();
+                    if (!isAdministrator) {
+                      alert(
+                        'Você não tem permissão para alterar um(a) usuário(a).'
+                        );
+                      stopUpdating();
+                      return;
+                    }
+                    sendUpdateRequest(registeringUser.id);
+                  }}
+                />
+                <CancelButton
+                  type="button"
+                  value="Cancelar"
+                  onClick={ stopUpdating }
+                />
+              </FormDiv100>
+            )
+          }
       </FormContainer>
     </>
   );
