@@ -1,6 +1,5 @@
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
-const TOKEN = localStorage.getItem('token');
 
 export const getStacksProjectsRequest = async () => {
   try {
@@ -28,7 +27,7 @@ export const getStackProjectByPKRequest = async (stackId, projectId) => {
   }
 };
 
-export const registerStackProjectRequest = async (receivedData) => {
+export const registerStackProjectRequest = async (receivedData, receivedToken) => {
   try {
     const response = await fetch(`${API_URL}/stacks-projects`, {
       method: 'POST',
@@ -38,7 +37,7 @@ export const registerStackProjectRequest = async (receivedData) => {
         'Access-control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     });
 
@@ -49,7 +48,7 @@ export const registerStackProjectRequest = async (receivedData) => {
   }
 };
 
-export const deleteStackProjectRequest = async (stackId, projectId) => {
+export const deleteStackProjectRequest = async (stackId, projectId, receivedToken) => {
   try {
     const response = await fetch(
       `${API_URL}/stacks-projects/${stackId}/${projectId}`,
@@ -60,7 +59,7 @@ export const deleteStackProjectRequest = async (stackId, projectId) => {
           'Access-control-Allow-Origin': API_ORIGIN,
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Authorization': TOKEN,
+          'Authorization': receivedToken,
         },
       }
     );

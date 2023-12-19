@@ -27,7 +27,7 @@ const ProjectsForm = () => {
     setProjects,
   } = useContext(ProjectsContext);
 
-  const { isAdministrator } = useContext(LoginContext);
+  const { isAdministrator, token } = useContext(LoginContext);
 
   const { stacks } = useContext(StacksContext);
 
@@ -93,7 +93,7 @@ const ProjectsForm = () => {
 
   const sendRegisterRequest = async () => {
     if (file && file.name.length > 0) {
-      const response = await registerProject({ ...project, snapshot: file });
+      const response = await registerProject({ ...project, snapshot: file }, token);
       stopUpdating();
 
       getProjects()
@@ -102,7 +102,7 @@ const ProjectsForm = () => {
       return response;
     }
 
-    const response = await registerProject(project);
+    const response = await registerProject(project, token);
     stopUpdating();
 
     getProjects()
@@ -113,7 +113,7 @@ const ProjectsForm = () => {
 
   const sendUpdateRequest = async () => {
     if (file && file.name.length > 0) {
-      const response = await updateProject({ ...project, snapshot: file });
+      const response = await updateProject({ ...project, snapshot: file.name }, token);
 
       stopUpdating();
 
@@ -122,7 +122,7 @@ const ProjectsForm = () => {
       return response;
     }
 
-    await updateProject({ ...project, snapshot: '' });
+    await updateProject({ ...project, snapshot: '' }, token);
 
     stopUpdating();
 

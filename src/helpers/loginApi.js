@@ -1,6 +1,5 @@
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
-const TOKEN = localStorage.getItem('token');
 
 const requestLogin = async (receivedCredencials) => {
   try {
@@ -17,6 +16,29 @@ const requestLogin = async (receivedCredencials) => {
 
     const response = fetch(`${API_URL}/users/login`, options)
     .then(response => response.json())
+    .then(data => data);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+    return new Error(`Something went wrong. Error: ${error}`);
+  }
+};
+
+const requestTestIsActive = async (receivedToken) => {
+  try {
+    const options = {
+      method:'POST',
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin': API_ORIGIN,
+        'Content-Type': 'application/json',
+        'Authorization': receivedToken,
+      },
+    };
+
+    const response = fetch(`${API_URL}/users/test-is-active`, options)
+    .then(response => response)
     .then(data => data);
 
     return response;
@@ -85,7 +107,7 @@ const requestCreateUser = async (receivedUser, receivedCredentials) => {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Accept': 'application/json',
-        Authorization: receivedCredentials,
+        'Authorization': receivedCredentials,
       },
       body: JSON.stringify(userToRegister),
     };
@@ -124,7 +146,7 @@ const requestUpdateUser = async (receivedId, receivedUser, receivedCredentials) 
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        Authorization: receivedCredentials,
+        'Authorization': receivedCredentials,
       },
     };
 
@@ -137,7 +159,7 @@ const requestUpdateUser = async (receivedId, receivedUser, receivedCredentials) 
   }
 };
 
-const requestDeleteUser = async (id) => {
+const requestDeleteUser = async (id, receivedCredentials) => {
   try {
     const otpions = {
       method:'DELETE',
@@ -146,7 +168,7 @@ const requestDeleteUser = async (id) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedCredentials,
       },
     };
 
@@ -166,4 +188,5 @@ export {
   requestDeleteUser,
   requestCreateUser,
   requestUpdateUser,
+  requestTestIsActive,
 };

@@ -21,7 +21,8 @@ const UsersTable = () => {
     setRegisteringUser,
     setUsers,
     setIsUpdating,
-    isAdministrator
+    isAdministrator,
+    token,
   } = useContext(LoginContext);
 
   const selectToUpdate = (tableUser) => {
@@ -46,7 +47,7 @@ const UsersTable = () => {
 
     if (!confirmDelete) return;
 
-    const response = await requestDeleteUser(receivedId);
+    const response = await requestDeleteUser(receivedId, token);
 
     if (response && response.user) {
       const listToUpdate = await requestGetUsers();

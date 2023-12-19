@@ -6,7 +6,6 @@ import {
 
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
-const TOKEN = localStorage.getItem('token');
 
 const getProjects = async () => {
   try {
@@ -32,7 +31,7 @@ const getProjectById = async (id) => {
   }
 };
 
-const registerProjectRequest = async (receivedData) => {
+const registerProjectRequest = async (receivedData, receivedToken) => {
   try {
     const options = {
       method: 'POST',
@@ -42,7 +41,7 @@ const registerProjectRequest = async (receivedData) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     };
 
@@ -98,7 +97,9 @@ const deleteSnapshot = async (snapshot) => {
   return deleteFileResponse;
 };
 
-const associateStacksToProject = async (projectId, stacks) => {
+const associateStacksToProject = async (projectId, stacks, receivedToken) => {
+  console.log('PROJECT ID', projectId);
+  console.log('STACKS', stacks);
   const stacksIds = stacks.map((stack) => stack.id);
 
   stacksIds.forEach(async (stackId) => {
@@ -109,12 +110,12 @@ const associateStacksToProject = async (projectId, stacks) => {
         stackId,
       };
 
-      await registerStackProjectRequest(newStackProject);
+      await registerStackProjectRequest(newStackProject, receivedToken);
     }
   });
 };
 
-const dissociateStacksFromProject = async (projectId, stacks) => {
+const dissociateStacksFromProject = async (projectId, stacks, receivedToken) => {
   const stacksIds = stacks.map((stack) => stack.id);
 
   const responses = stacksIds.map(async (stackId) => {
@@ -122,7 +123,7 @@ const dissociateStacksFromProject = async (projectId, stacks) => {
 
     if (stackProject.stackId && stackProject.projectId) {
       const deleteResponse = await
-        deleteStackProjectRequest(stackId, projectId);
+        deleteStackProjectRequest(stackId, projectId, receivedToken);
       return deleteResponse;
     }
   });
@@ -154,10 +155,10 @@ const setStacksProjectsToDissociate = async (updatedStacks, toUpdateStacks) => {
   return stacksToDissociate;
 };
 
-const registerProject = async (receivedData) => {
+const registerProject = async (receivedData, receivedToken) => {
   try {
     if (!receivedData.snapshot || receivedData.snapshot.length === 0) {
-      return registerProjectRequest(receivedData);
+      return registerProjectRequest(receivedData, receivedToken);
     }
 
     const formData = new FormData();
@@ -165,10 +166,13 @@ const registerProject = async (receivedData) => {
 
     const snapshot  = await uploadSnapshot(formData);
 
-    const response = await registerProjectRequest({
-      ...receivedData,
-      snapshot: snapshot.file.filename,
-    });
+    const response = await registerProjectRequest(
+      {
+        ...receivedData,
+        snapshot: snapshot.file.filename,
+      },
+      receivedToken
+    );
 
     if (
       response
@@ -177,7 +181,7 @@ const registerProject = async (receivedData) => {
       && receivedData.stacks.length > 0
     ) {
       const projectId = response.project.id;
-      await associateStacksToProject(projectId, receivedData.stacks);
+      await associateStacksToProject(projectId, receivedData.stacks, receivedToken);
     }
 
     return response;
@@ -187,7 +191,7 @@ const registerProject = async (receivedData) => {
   }
 };
 
-const requestProjectUpdate = async (receivedId, updatedProject) => {
+const requestProjectUpdate = async (receivedId, updatedProject, receivedToken) => {
   try {
     const projectToUpdate = await getProjectById(receivedId);
 
@@ -201,8 +205,8 @@ const requestProjectUpdate = async (receivedId, updatedProject) => {
       projectToUpdate.Stacks
     );
 
-    await associateStacksToProject(receivedId, stacksToAssociate);
-    await dissociateStacksFromProject(receivedId, stacksToDissociate);
+    await associateStacksToProject(receivedId, stacksToAssociate, receivedToken);
+    await dissociateStacksFromProject(receivedId, stacksToDissociate, receivedToken);
 
     if (!projectToUpdate) {
       return `Não foi possível encontrar projeto com o ID: ${receivedId}`;
@@ -216,7 +220,7 @@ const requestProjectUpdate = async (receivedId, updatedProject) => {
         'Access-control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     };
 
@@ -228,13 +232,14 @@ const requestProjectUpdate = async (receivedId, updatedProject) => {
   }
 };
 
-const updateProject = async (updatedProject) => {
+const updateProject = async (updatedProject, receivedToken) => {
   try {
+    console.log(updatedProject);
     const projectToUpdate = await getProjectById(updatedProject.id);
 
     if (!updatedProject.snapshot || updatedProject.snapshot.length === 0) {
       updatedProject.snapshot = projectToUpdate.snapshot;
-      return requestProjectUpdate(updatedProject.id, updatedProject);
+      return requestProjectUpdate(updatedProject.id, updatedProject, receivedToken);
     }
 
     const imageToDelete = await fetch(
@@ -261,7 +266,8 @@ const updateProject = async (updatedProject) => {
       {
         ...updatedProject,
         snapshot: snapshot.file.filename,
-      }
+      },
+      receivedToken
     );
 
     return response;
@@ -271,7 +277,7 @@ const updateProject = async (updatedProject) => {
   }
 };
 
-const requestProjectDelete = async (receivedId) => {
+const requestProjectDelete = async (receivedId, receivedToken) => {
   try {
     const projectToDelete = await getProjectById(receivedId);
     if (!projectToDelete) {
@@ -291,7 +297,7 @@ const requestProjectDelete = async (receivedId) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     };
 

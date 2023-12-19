@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { LoginContext } from './Contexts';
-import { requestGetUsers } from '../helpers/loginApi';
+import { requestGetUsers, requestTestIsActive } from '../helpers/loginApi';
+import { useMemo } from 'react';
 
 const LoginProvider = ({ children }) => {
-  const blankForm = {
+  const blankForm = useMemo(() => ({
     id: null,
     userName: '',
     password: '',
     role: '',
-  };
+  }), []);
 
   const [user, setUser] = useState(blankForm);
   const [registeringUser, setRegisteringUser] = useState(blankForm);
@@ -24,6 +25,19 @@ const LoginProvider = ({ children }) => {
     setUsers(data);
     return data;
   };
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+
+    requestTestIsActive(token)
+    .then((response) => {
+      if (response.status === 401) {
+        localStorage.clear();
+        setIsLogged(false);
+        setUser(blankForm);
+      }
+    });
+  });
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));

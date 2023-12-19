@@ -1,6 +1,5 @@
 const API_URL = process.env.REACT_APP_BASE_URL;
 const API_ORIGIN = process.env.REACT_APP_BASE_URL_ORIGIN;
-const TOKEN = localStorage.getItem('token');
 
 const getStacks = async () => {
   try {
@@ -24,7 +23,7 @@ const getStackById = async (id) => {
   }
 };
 
-const requestStackRegister = (receivedData) => {
+const requestStackRegister = (receivedData, receivedToken) => {
   try {
     const options = {
       method: 'POST',
@@ -34,7 +33,7 @@ const requestStackRegister = (receivedData) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     };
     const response = fetch(`${API_URL}/stacks`, options)
@@ -49,7 +48,7 @@ const requestStackRegister = (receivedData) => {
   }
 };
 
-const updateStackRequest = async (receivedId, updatedStack) => {
+const updateStackRequest = async (receivedId, updatedStack, receivedToken) => {
   try {
     const stackToUpdate = await getStackById(receivedId);
     if (!stackToUpdate) {
@@ -61,10 +60,10 @@ const updateStackRequest = async (receivedId, updatedStack) => {
       body: JSON.stringify(updatedStack),
       mode: 'cors',
       headers: {
+        'Authorization': receivedToken,
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
       },
     };
 
@@ -77,7 +76,7 @@ const updateStackRequest = async (receivedId, updatedStack) => {
   }
 };
 
-const deleteStackRequest = async (receivedId) => {
+const deleteStackRequest = async (receivedId, receivedToken) => {
   try {
     const stackToDelete = await getStackById(receivedId);
     if (!stackToDelete) {
@@ -91,7 +90,7 @@ const deleteStackRequest = async (receivedId) => {
         'Access-Control-Allow-Origin': API_ORIGIN,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': TOKEN,
+        'Authorization': receivedToken,
       },
     };
 
