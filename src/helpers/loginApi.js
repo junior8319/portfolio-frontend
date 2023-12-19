@@ -25,6 +25,29 @@ const requestLogin = async (receivedCredencials) => {
   }
 };
 
+const requestTestIsActive = async (receivedToken) => {
+  try {
+    const options = {
+      method:'POST',
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin': API_ORIGIN,
+        'Content-Type': 'application/json',
+        'Authorization': receivedToken,
+      },
+    };
+
+    const response = fetch(`${API_URL}/users/test-is-active`, options)
+    .then(response => response)
+    .then(data => data);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+    return new Error(`Something went wrong. Error: ${error}`);
+  }
+};
+
 const requestGetUsers = async () => {
   try {
     const options = {
@@ -165,4 +188,5 @@ export {
   requestDeleteUser,
   requestCreateUser,
   requestUpdateUser,
+  requestTestIsActive,
 };
