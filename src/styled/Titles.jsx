@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const Title1 = styled.h1`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   background: none;
   padding: 5px 0;
 
   @media (max-width: 1100px) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   @media (max-width: 400px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
     width: 100%;
   }
 `;
@@ -36,11 +36,11 @@ export const Title3 = styled.h3`
   padding: 5px 0;
 
   @media (max-width: 1100px) {
-    font-size: 0.80rem;
+    font-size: 0.95rem;
   }
 
   @media (max-width: 400px) {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     width: 100%;
   }
 `;
