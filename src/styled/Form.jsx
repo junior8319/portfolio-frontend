@@ -68,7 +68,12 @@ export const FormContainer = styled.form`
   width: 97.5%;
   
   * {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+
+  @media (max-width: 500px) {
+    width: 95%;
+    margin: ${ props => props.$margin || '5px' };
   }
 
   @media (max-width: 400px) {
@@ -76,7 +81,7 @@ export const FormContainer = styled.form`
     padding: 0;
 
     * {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 `;
