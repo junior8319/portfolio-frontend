@@ -27,6 +27,12 @@ const GlobalStyle = createGlobalStyle`
     background-color: #0000ff20;
     border-radius: 15px;
   }
+
+  @media (max-width: 1200px) {
+    *::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 export default GlobalStyle;
