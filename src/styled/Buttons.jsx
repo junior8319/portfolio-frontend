@@ -39,11 +39,12 @@ export const SaveButton = styled.input`
   }
 
   @media (max-width: 1100px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
-  @media (max-width: 400px) {
-    font-size: 0.9rem;
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+    width: ${props => props.$width400 || '50%'};
   }
 `;
 
@@ -65,11 +66,12 @@ export const CancelButton = styled.input`
   }
 
   @media (max-width: 1100px) {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 400px) {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+    width: ${props => props.$width400 || '50%'};
   }
 `;
 
@@ -83,6 +85,7 @@ export const NavMenuButton = styled.button`
   font-size: 1.1rem;
   background-color: #47425f90;
   text-align: center;
+  top: 0;
 
   @media (min-width: 501px) {
     display: none;
