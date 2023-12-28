@@ -6,20 +6,20 @@ import Article from '../styled/Article';
 
 const Projects = () => {
   return (
-    <>
-      <Container>
-        <Article
-          $width={ '100%' }
-          $backgroundColor={ 'transparent' }
-        >
-          <Title1>Meus Projetos</Title1>
-        </Article>
+    <Container
+      $flexWrap='wrap'
+    >
+      <Article
+        $width='100%'
+        $display='block'
+        $backgroundColor='transparent'
+        $margin='0'
+        $padding='5px'
+      >
+        <Title1>Meus Projetos</Title1>
+      </Article>
+      <ProjectsComponent />
       </Container>
-
-      <Container>
-        <ProjectsComponent />
-      </Container>
-    </>
   );
 };
 

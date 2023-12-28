@@ -5,20 +5,16 @@ import image from '../assets/images/handyman.jpg';
 
 const Articles = () => {
   return (
-    <>
-      <Container
-        $height="90vh"
-      >
-        <BuildingComp
-          buildingProps={{
-            title: 'Página dos Meus Artigos em construção...',
-            image: image,
-            imageBy: 'https://pixabay.com/pt/users/alexas_fotos-686414/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3094035',
-            imageSource: 'https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3094035'
-          }}
-        />
-      </Container>
-    </>
+    <Container>
+      <BuildingComp
+        buildingProps={{
+          title: 'Página dos Meus Artigos em construção...',
+          image: image,
+          imageBy: 'https://pixabay.com/pt/users/alexas_fotos-686414/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3094035',
+          imageSource: 'https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3094035'
+        }}
+      />
+    </Container>
   );
 };
 
