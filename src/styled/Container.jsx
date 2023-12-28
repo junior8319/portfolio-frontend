@@ -11,7 +11,7 @@ export const InnerContent = styled.div`
   text-align: ${props => props.$textAlign || ''};
 `;
 
-export const NavBarMenu = styled.div`
+export const NavBarMenu = styled.nav`
   background-color: #e1dbdb;
   border-radius: 25px;
   display: flex;
@@ -53,25 +53,32 @@ export const NavBarMenu = styled.div`
 `;
 
 export const LoginContainer = styled.article`
-background-color: ${props => props.$backGround};
-width: 50%;
-border-radius: 10px;
-border: 1px solid #037d1a40;
-margin: auto;
-margin-top: 25vh;
-margin-bottom: 25vh;
-max-height: ${props => props.$maxHeight || ''};
-padding: 40px;
-align-self: center;
+  background-color: ${props => props.$backGround};
+  width: 50%;
+  border-radius: 10px;
+  border: 1px solid #037d1a40;
+  margin: auto;
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+  max-height: ${props => props.$maxHeight || ''};
+  padding: 40px;
+  align-self: center;
 
-article:hover {
-  background-color: #037d1a40;
-  transition: 1s;
-}
+  article:hover {
+    background-color: #037d1a40;
+    transition: 1s;
+  }
 
-@media (max-width: 800px) {
-  flex-wrap: wrap;
-}
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    width: 70%;
+    padding: 20px;
+  }
+
+  @media (max-width: 500px) {
+    width: 85%;
+    padding: 10px;
+  }
 `;
 
 export const BuildingContainer = styled.article`
@@ -82,7 +89,7 @@ export const BuildingContainer = styled.article`
   border-radius: 10px;
   display: flex;
   flex-wrap: wrap;
-  height: 50%;
+  height: 70%;
   justify-content: center;
   justify-self: center;
   margin: auto;
@@ -91,10 +98,15 @@ export const BuildingContainer = styled.article`
 
   @media (max-width: 800px) {
     width: 90%;
+    height: 65%;
+  };
+
+  @media (max-width: 500px) {
+    height: 60%;
   };
 `;
 
-const Container = styled.section`
+const MainContainer = styled.main`
   align-items: ${props => props.$alignItems || ''};
   align-self: ${props => props.$alignSelf || ''};
   background-color: ${props => props.$backGround};
@@ -102,23 +114,28 @@ const Container = styled.section`
   border-radius: ${props => props.$borderRadius || '10px'};
   display: ${props => props.$display || 'flex'};
   flex-wrap: ${props => props.$flexWrap || ''};
-  height: ${props => props.$height || ''};
+  height: ${props => props.$height || '83vh'};
   justify-content: ${props => props.$justifyContent || ''};
   justify-self: ${props => props.$justifySelf || ''};
   margin: ${props => props.$margin || '0 auto'};
-  max-height: ${props => props.$maxHeight || '95%'};
-  position: ${props => props.$position || 'relative'};
-  top: ${props => props.$top || '55px'};
+  position: ${props => props.$position || ''};
+  top: ${props => props.$top || '7vh'};
   width: ${props => props.$width || '100%'};
+  overflow: ${props => props.$overflow || 'auto'};
+  padding: ${props => props.$padding || ''}; 
 
   article:hover {
     background-color: #0000ff20;
     transition: 1s;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 500px) {
+    height: 90vh;
   }
 `;
 
-export default Container;
+export default MainContainer;
