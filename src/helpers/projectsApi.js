@@ -234,7 +234,6 @@ const requestProjectUpdate = async (receivedId, updatedProject, receivedToken) =
 
 const updateProject = async (updatedProject, receivedToken) => {
   try {
-    console.log(updatedProject);
     const projectToUpdate = await getProjectById(updatedProject.id);
 
     if (!updatedProject.snapshot || updatedProject.snapshot.length === 0) {
