@@ -18,7 +18,8 @@ const BuildingComp = ({ buildingProps }) => {
         $textAlign="center"
       >
         <NormalPicture
-          $width="50%"
+          $width="65%"
+          $height="70%"
           $margin="10px 10px 0 10px"
           src={buildingProps.image}
         />
