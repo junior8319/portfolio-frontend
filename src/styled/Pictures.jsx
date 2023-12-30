@@ -24,6 +24,11 @@ export const NormalPicture = styled.img`
     align-self: center;
     margin: 10px auto;
   }
+
+  @media (max-height: 400px) {
+    width: ${props => props.$widthH400 || '200px'};
+    height: ${props => props.$heightH400 || '130px'};
+  }
 `;
 
 export const CardPicture = styled.img`

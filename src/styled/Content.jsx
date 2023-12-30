@@ -11,6 +11,10 @@ const Content = styled.article`
   @media (max-width: 400px) {
     overflow: hidden;
   }
+
+  @media (max-height: 400px) {
+    height: 70%;
+  }
 `;
 
 export default Content;

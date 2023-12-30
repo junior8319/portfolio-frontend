@@ -11,12 +11,18 @@ export const FooterContainer = styled.footer`
   bottom: 5px;
   width: 99%;
   height: 8vh;
-  position: ${props => props.$position || 'relative'};
+  position: ${props => props.$position || ''};
   text-align: center;
 
   @media (max-width: 500px) {
     position: fixed;
     bottom: 2px;
+  }
+
+  @media (max-height: 400px) {
+    position: fixed;
+    bottom: 5px;
+    height: 12vh;
   }
 `;
 
