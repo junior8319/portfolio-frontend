@@ -109,9 +109,10 @@ export const ColUpdateBtn = styled.button`
     margin: auto;
   }
 
-  @media (max-width: 400px) {
-    font-size: 0.70rem;
-    width: 80px;
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+    width: 50%;
+    margin: 3px;
   }
 
   &:hover {
@@ -132,11 +133,14 @@ export const ColDeleteBtn = styled.button`
 
   @media (max-width: 1100px) {
     font-size: 0.80rem;
+    width: 100px;
     margin: auto;
   }
 
-  @media (max-width: 400px) {
-    font-size: 0.70rem;
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+    width: 50%;
+    margin: 3px;
   }
 
   &:hover {

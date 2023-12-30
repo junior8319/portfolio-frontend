@@ -26,21 +26,27 @@ const ProjectsComponent = () => {
       return (
       <Article
         key={project.id}
-        $width={ '45%' }
-        $maxHeight={ '90%' }
+        $width='45%'
+        $height='600px'
+        $maxHeight='87%'
+        $overflowY='auto'
+        $margin='10px'
+        $margin1200='5px auto'
       >
         <Article
-          $width={ '90%' }
+          $width={ '95%' }
           $margin={ 'auto' }
           $backgroundColor={ 'transparent' }
+          $marginTop='10px'
         >
           <Title2>{ project.title }</Title2>
         </Article>
         <Article
-          $width={ '90%' }
+          $width={ '95%' }
           $margin={ 'auto' }
           $backgroundColor={ 'transparent' }
           $textAlign={ 'center' }
+          $marginTop='10px'
         >
           <ProjectPicture
             src={ `${IMAGES_URL}/${project.snapshot}` }
@@ -49,18 +55,20 @@ const ProjectsComponent = () => {
 
         <Article
           $margin={ 'auto' }
-          $width={ '90%' }
+          $width={ '95%' }
           $backgroundColor={ 'transparent' }
+          $marginTop='10px'
         >
-          <SimpleP>{ project.description }</SimpleP>
+          <SimpleP $width='95%'>{ project.description }</SimpleP>
         </Article>
 
         <Article
           $margin={ 'auto' }
           $backgroundColor={ 'transparent' }
-          $width={ '90%' }
+          $width={ '95%' }
           $display={ 'flex' }
           $justifyContent={ 'baseline' }
+          $marginTop='10px'
         >
           <Title3>Data de início:</Title3>
           <SimpleP>
@@ -77,13 +85,14 @@ const ProjectsComponent = () => {
         <Article
           $margin={ 'auto' }
           $backgroundColor={ 'transparent' }
-          $width={ '90%' }
+          $width={ '95%' }
           $display={ 'flex' }
           $justifyContent={ 'baseline' }
+          $marginTop='10px'
         >
           <Title3>Data de conclusão:</Title3>
           <SimpleP>
-            { (project.finishDate)
+            { (project.finishDate && project.finishDate > project.startDate)
               ?
                 new Date(project.finishDate).toLocaleDateString()
               :
@@ -94,8 +103,9 @@ const ProjectsComponent = () => {
 
         <Article
           $backgroundColor={ 'transparent' }
-          $width={ '90%' }
+          $width={ '95%' }
           $margin={ 'auto' }
+          $marginTop='10px'
         >
           <Link
             to={`${project.projectUrl}`}
@@ -111,9 +121,10 @@ const ProjectsComponent = () => {
         <Article
           $margin={ '0 auto 15px auto' }
           $backgroundColor={ 'transparent' }
-          $width={ '90%' }
+          $width={ '95%' }
           $display={ 'flex' }
           $justifyContent={ 'baseline' }
+          $marginTop='10px'
         >
           <Title3>Ferramentas usadas:</Title3>
           {

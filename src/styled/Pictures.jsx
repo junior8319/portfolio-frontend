@@ -12,8 +12,10 @@ export const NormalPicture = styled.img`
   margin: ${props => props.$margin || '10px'};
 
   @media (max-width: 1100px) {
-    max-width: 125px;
-    max-height: 150px;
+    width: ${props => props.$width || '200px'};
+    height: ${props => props.$width || '250px'};
+    max-width: ${props => props.$maxWidth || ''};
+    max-height: ${props => props.$maxHeight || ''};
   }
 
   @media (max-width: 700px) {
@@ -21,8 +23,6 @@ export const NormalPicture = styled.img`
     text-align: center;
     align-self: center;
     margin: 10px auto;
-    width: 100%;
-    height: auto;
   }
 `;
 

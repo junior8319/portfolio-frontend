@@ -8,13 +8,15 @@ import picture from './assets/images/my_photo.jpeg';
 
 function App() {
   return (
-    <div>
-      <Container>
-        <NormalPicture src={ picture } alt="" />
-        <Welcome />
-        <Stacks />
-      </Container>
-    </div>
+    <Container>
+      <NormalPicture
+        $maxWidth="125px"
+        $maxHeight="150px"
+        src={ picture } alt=""
+      />
+      <Welcome />
+      <Stacks />
+    </Container>
   );
 }
 

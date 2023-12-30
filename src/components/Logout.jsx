@@ -21,6 +21,7 @@ const Logout = () => {
         $width='100%'
         $padding='0'
         $backgroundColor='transparent'
+
       >
         <SimpleP
           $textAlign='right'
@@ -34,6 +35,7 @@ const Logout = () => {
             $margin='0 0 0 10px'
             $width='fit-content'
             $borderRadius='20px'
+            $width400='20%'
           />
         </SimpleP>
       </Article>

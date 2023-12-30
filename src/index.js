@@ -11,14 +11,17 @@ import Administrator from './pages/Administrator';
 import StacksProvider from './context/StacksProvider';
 import LoginProvider from './context/LoginProvider';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <GlobalStyle />
+
     <NavBar />
+
     <Routes>
-      <Route path="/" element={ <App /> }/>
+      <Route path="/" element={ <StacksProvider><App /></StacksProvider> }/>
 
       <Route path="/contact-me" element={ <ContactMe /> } />
 
@@ -36,5 +39,7 @@ root.render(
 
       <Route path="*" element={ <div>404</div> } />
     </Routes>
+
+    <Footer />
   </BrowserRouter>
 );

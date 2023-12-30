@@ -18,7 +18,6 @@ const Administrator = () => {
 
   useEffect(() => {
     const userInStorage = JSON.parse(localStorage.getItem('user'));
-    const tokenInStorage = JSON.parse(localStorage.getItem('token'));
 
     if (userInStorage) {
       setIsAdministrator(userInStorage.role === 'owner');
@@ -38,7 +37,6 @@ const Administrator = () => {
   }
 
   return (
-    <>
       <Container
         $width="100%"
         $flexWrap="wrap"
@@ -107,7 +105,6 @@ const Administrator = () => {
           <UsersTable />
         </Article>
       </Container>
-    </>
   );
 }
 

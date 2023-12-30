@@ -139,12 +139,14 @@ const LoginForm = () => {
             type="button"
             value='Entrar'
             onClick={ sendLoginRequest }
+            $width400='75%'
           />
 
           <SaveButton
             type="button"
             value='Visitar sem cadastro.'
             onClick={ visitorLogin }
+            $width400='75%'
           />
         </FormDiv100>
 

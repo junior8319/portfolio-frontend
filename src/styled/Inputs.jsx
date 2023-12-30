@@ -19,6 +19,10 @@ export const Input = styled(InputMask)`
   @media (max-width: 1100px) {
     font-size: 0.85rem;
   }
+
+  @media (max-width: 800px) {
+    width: 90%;
+  }
 `;
 
 export const Select = styled.select`

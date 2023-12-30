@@ -13,7 +13,7 @@ const NavBar = () => {
   };
 
   return (
-    <div>
+    <header>
       {
         showMenu
         ?
@@ -36,7 +36,7 @@ const NavBar = () => {
           </StyledNavBar>
         </>
       }
-    </div>
+    </header>
   );
 }
 
