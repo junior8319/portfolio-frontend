@@ -13,6 +13,10 @@ export const Title1 = styled.h1`
     font-size: 1.1rem;
     width: 100%;
   }
+
+  @media (max-height: 400px) {
+    font-size: 1.1rem;
+  }
 `;
 
 export const Title2 = styled.h2`
@@ -28,6 +32,10 @@ export const Title2 = styled.h2`
     font-size: 0.9rem;
     width: 100%;
   }
+
+  @media (max-height: 400px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const Title3 = styled.h3`
@@ -42,5 +50,9 @@ export const Title3 = styled.h3`
   @media (max-width: 400px) {
     font-size: 0.85rem;
     width: 100%;
+  }
+
+  @media (max-height: 400px) {
+    font-size: 0.85rem;
   }
 `;

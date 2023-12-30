@@ -30,6 +30,11 @@ const StacksContainer = styled.section`
     width: 100%;
     margin: ${ props => props.$margin || '5px auto' };
   }
+
+  @media (max-height: 400px) {
+    height: 95%;
+    margin: ${ props => props.$margin || '5px auto' };
+  }
 `;
 
 export default StacksContainer;

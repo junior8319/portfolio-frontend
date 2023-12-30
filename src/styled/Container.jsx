@@ -104,6 +104,10 @@ export const BuildingContainer = styled.article`
   @media (max-width: 500px) {
     height: 60%;
   };
+
+  @media (max-height: 400px) {
+    height: 90%;
+  };
 `;
 
 const MainContainer = styled.main`
@@ -134,7 +138,13 @@ const MainContainer = styled.main`
   }
 
   @media (max-width: 500px) {
-    height: 90vh;
+    height: 85vh;
+  }
+
+  @media (max-height: 400px) {
+    position: relative;
+    top: ${props => props.$topH400 || '5vh'};
+    height: 65vh;
   }
 `;
 

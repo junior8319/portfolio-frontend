@@ -24,6 +24,10 @@ const NavBar = styled.nav`
   @media (max-width: 500px) {
     display: none;
   }
+
+  @media (max-height: 400px) {
+    height: 10vh;
+  }
 `;
 
 export default NavBar;

@@ -16,6 +16,10 @@ const ControlBar = styled.nav`
     align-self: center;
     justify-self: center;
   }
+
+  @media (max-height: 400px) {
+    height: 15%;
+  }
 `;
 
 export default ControlBar;

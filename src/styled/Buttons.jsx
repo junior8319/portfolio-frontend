@@ -19,6 +19,11 @@ export const ControlButton = styled.button`
     font-size: 0.9rem;
     padding: 7.5px;
   }
+
+  @media (max-height: 400px) {
+    font-size: 0.6rem;
+    height: 90%;
+  }
 `;
 
 export const SaveButton = styled.input`
