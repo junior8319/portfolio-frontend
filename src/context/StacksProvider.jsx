@@ -38,7 +38,12 @@ const StacksProvider = ({ children }) => {
     getStacksFromApi();
   }, []);
 
-  let mappedStacks = stacks.map((stack) => stack);
+  let mappedStacks = (stacks && stacks.length && stacks.length > 0)
+  ?
+    stacks.map((stack) => stack)
+  :
+    []
+  ;
 
 
   const contextValue = {
