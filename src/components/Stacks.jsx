@@ -12,13 +12,17 @@ const Stacks = () => {
   
   useEffect(() => {
     getStacks()
-      .then(data => setStacks(data));
+      .then(data => setStacks(data))
+      .catch(error => {
+        console.error(error);
+        setStacks([]);
+      });
   }, []);
 
   useEffect(() => {}, [stacks]);
 
   return (
-    (stacks && stacks.length)
+    (stacks && stacks.length && stacks.length > 0)
     ?
       <StacksContainer>
         <Title1>Ferramentas que conheço:</Title1>
