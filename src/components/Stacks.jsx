@@ -8,12 +8,15 @@ import StacksContainer from '../styled/StacksContainer';
 import ControlBarComp from './ControlBarComp';
 
 const Stacks = () => {
-  const [stacks, setStacks] = useState([]);
+  const [stacks, setStacks] = useState([]);  
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     getStacks()
-      .then(data => setStacks(data))
+      .then(data => {
+        setStacks(data);
+        setIsLoading(false);
+      })
       .catch(error => {
         console.error(error);
         setStacks([]);
@@ -21,7 +24,7 @@ const Stacks = () => {
       });
   }, []);
 
-  useEffect(() => {}, [stacks]);
+  useEffect(() => {}, [stacks]);  
 
   return (
     (stacks && stacks.length && stacks.length > 0 && !isLoading)
