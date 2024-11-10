@@ -13,7 +13,10 @@ const Stacks = () => {
   
   useEffect(() => {
     getStacks()
-      .then(data => setStacks(data))
+      .then(data => {
+        setStacks(data);
+        setIsLoading(false);
+      })
       .catch(error => {
         console.error(error);
         setStacks([]);

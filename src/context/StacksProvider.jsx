@@ -38,6 +38,9 @@ const StacksProvider = ({ children }) => {
     getStacksFromApi();
   }, []);
 
+  useEffect(() => {}, [stacks]);
+    
+
   let mappedStacks = (stacks && stacks.length && stacks.length > 0)
   ?
     stacks.map((stack) => stack)
