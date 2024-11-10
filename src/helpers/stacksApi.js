@@ -55,9 +55,6 @@ const updateStackRequest = async (receivedId, updatedStack, receivedToken) => {
       return `Não foi possível encontrar registro com o ID: ${receivedId}`;
     }
 
-    console.log('TOKEN', receivedToken);
-    
-
     const options = {
       method: 'PUT',
       body: JSON.stringify(updatedStack),
